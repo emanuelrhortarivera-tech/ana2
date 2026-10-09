@@ -1,0 +1,321 @@
+/* =============================================================================
+   VARIABLES GLOBALES Y DIRECCIÓN ARTÍSTICA
+   ============================================================================= */
+:root {
+  /* Paleta cromática romántica y botánica */
+  --color-bg-deep: #080708;
+  --color-bg-secondary: #100C10;
+  --color-rose-dusty: #E8A6B7;
+  --color-rose-pastel: #F1C1CF;
+  --color-rose-pale: #F8DCE4;
+  --color-rose-deep: #B97C90;
+  --color-stem-muted: #536B59;
+  --color-stem-dark: #3A4D3E;
+  --color-paper-ivory: #F7F0E8;
+  --color-paper-subtle: #FAF5EE;
+  --color-text-letter: #2C2226;
+  --color-text-letter-muted: #5A4750;
+
+  /* Tipografía */
+  --font-serif-editorial: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans-clean: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script-romantic: 'Alex Brush', cursive, serif;
+
+  /* Transiciones y curvas de suavizado */
+  --ease-gentle: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-soft-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bloom: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* =============================================================================
+   RESET Y BASE
+   ============================================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--color-bg-deep);
+  color: var(--color-rose-pale);
+  font-family: var(--font-sans-clean);
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================================
+   CONTENEDOR PRINCIPAL DE LA EXPERIENCIA
+   ============================================================================= */
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 45%, #140E14 0%, #080708 75%);
+}
+
+/* =============================================================================
+   PARTÍCULAS AMBIENTALES FLOTANTES (Mínimas, sutiles y poéticas)
+   ============================================================================= */
+.ambient-motes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.ambient-mote {
+  position: absolute;
+  background: var(--color-rose-pale);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.5px);
+  animation: floatMote 14s infinite linear;
+}
+
+@keyframes floatMote {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0.6);
+  }
+  20% {
+    opacity: 0.35;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1.1);
+  }
+}
+
+/* =============================================================================
+   ESCENA 1: LA INVITACIÓN
+   ============================================================================= */
+.scene-welcome {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1.2s var(--ease-gentle), transform 1.2s var(--ease-gentle), visibility 1.2s;
+  visibility: visible;
+}
+
+.scene-welcome.fade-out {
+  opacity: 0;
+  transform: scale(0.96);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.welcome-content {
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.welcome-flower-wrapper {
+  margin-bottom: 0.5rem;
+  animation: singleRoseBreathe 4.5s ease-in-out infinite;
+}
+
+@keyframes singleRoseBreathe {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+.welcome-title {
+  font-family: var(--font-serif-editorial);
+  font-size: clamp(2rem, 5.5vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--color-rose-pale);
+  text-shadow: 0 0 20px rgba(232, 166, 183, 0.2);
+}
+
+.welcome-subtitle {
+  font-family: var(--font-sans-clean);
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(248, 220, 228, 0.7);
+  letter-spacing: 0.03em;
+  margin-top: -0.4rem;
+}
+
+.btn-open-gift {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid rgba(232, 166, 183, 0.45);
+  color: var(--color-rose-pale);
+  font-family: var(--font-serif-editorial);
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-gentle);
+  box-shadow: 0 0 15px rgba(232, 166, 183, 0.08);
+}
+
+.btn-open-gift::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 240, 244, 0.12),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.btn-open-gift:hover,
+.btn-open-gift:focus-visible {
+  border-color: rgba(232, 166, 183, 0.85);
+  box-shadow: 0 0 25px rgba(232, 166, 183, 0.25), inset 0 0 15px rgba(232, 166, 183, 0.1);
+  transform: translateY(-2px);
+  color: #FFF;
+}
+
+.btn-open-gift:hover::before {
+  left: 100%;
+}
+
+.btn-open-gift:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* =============================================================================
+   CONTROL DE MÚSICA DISCRETO (Esquina superior derecha)
+   ============================================================================= */
+.music-control-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 1s var(--ease-gentle), transform 1s var(--ease-gentle);
+  pointer-events: none;
+}
+
+.music-control-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.btn-music-toggle {
+  background: rgba(16, 12, 16, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(232, 166, 183, 0.25);
+  color: var(--color-rose-pale);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-gentle);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-music-toggle:hover,
+.btn-music-toggle:focus-visible {
+  border-color: rgba(232, 166, 183, 0.7);
+  box-shadow: 0 0 15px rgba(232, 166, 183, 0.25);
+  transform: scale(1.06);
+}
+
+.btn-music-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+/* Ondas sonoras animadas cuando suena música */
+.music-waves {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 16px;
+}
+
+.music-waves span {
+  width: 2.5px;
+  background-color: var(--color-rose-pale);
+  border-radius: 2px;
+  animation: musicWave 1.2s ease-in-out infinite alternate;
+}
+
+.music-waves span:nth-child(1) { height: 8px; animation-delay: 0.1s; }
+.music-waves span:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+.music-waves span:nth-child(3) { height: 11px; animation-delay: 0.2s; }
+
+.btn-music-toggle.muted .music-waves span {
+  animation: none;
+  height: 3px;
+  opacity: 0.5;
+}
+
+@keyframes musicWave {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1); }
+}
+
+/* Accesibilidad y foco */
+:focus-visible {
+  outline: 2px solid var(--color-rose-dusty);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

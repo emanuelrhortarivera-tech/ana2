@@ -1,0 +1,505 @@
+/* =============================================================================
+   ESCENA PRINCIPAL: EL RAMO BOTÁNICO
+   ============================================================================= */
+.scene-bouquet {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s var(--ease-gentle), visibility 1.5s;
+}
+
+.scene-bouquet.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estado cuando la carta está abierta: el ramo se repliega suavemente hacia atrás */
+.scene-bouquet.letter-open {
+  transform: translateY(-5%) scale(0.88);
+  opacity: 0.22;
+  filter: blur(1.5px);
+  pointer-events: none;
+  transition: transform 1.2s var(--ease-gentle), opacity 1.2s var(--ease-gentle), filter 1.2s var(--ease-gentle);
+}
+
+.scene-bouquet.letter-closed {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+  pointer-events: auto;
+  transition: transform 1.2s var(--ease-gentle), opacity 1.2s var(--ease-gentle), filter 1.2s var(--ease-gentle);
+}
+
+/* Área interactiva del ramo */
+.bouquet-stage {
+  position: relative;
+  width: min(88vw, 520px);
+  height: min(72vh, 620px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 24px;
+  transition: transform 0.6s var(--ease-gentle);
+}
+
+/* Indicador de foco accesible */
+.bouquet-stage:focus-visible {
+  outline: 1.5px dashed var(--color-rose-dusty);
+  outline-offset: 8px;
+}
+
+/* Reacción al pasar el cursor (Desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .bouquet-stage:hover #flowers-group {
+    filter: drop-shadow(0 0 16px rgba(232, 166, 183, 0.35));
+    transform: scale(1.025);
+    transition: transform 0.6s var(--ease-gentle), filter 0.6s var(--ease-gentle);
+  }
+}
+
+/* Reacción al toque o clic previo a revelar la carta */
+.bouquet-stage.clicked {
+  animation: bouquetTouchReact 1.2s var(--ease-soft-in-out) forwards;
+}
+
+.bouquet-stage.clicked #flowers-group {
+  filter: drop-shadow(0 0 24px rgba(248, 220, 228, 0.7)) drop-shadow(0 0 45px rgba(232, 166, 183, 0.5));
+  transition: filter 0.6s ease;
+}
+
+@keyframes bouquetTouchReact {
+  0% { transform: scale(1) rotate(0deg); }
+  30% { transform: scale(1.05) rotate(-1.5deg) translateY(-8px); }
+  65% { transform: scale(0.98) rotate(1deg) translateY(3px); }
+  100% { transform: scale(1.02) rotate(0deg) translateY(0); }
+}
+
+/* =============================================================================
+   CAPULLOS CERRADOS QUE FLORECEN AL TOCAR
+   ============================================================================= */
+.closed-bud .unfurl-petal {
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.15);
+  transition: opacity 1.2s cubic-bezier(0.18, 1.2, 0.4, 1), transform 1.2s cubic-bezier(0.18, 1.2, 0.4, 1);
+}
+
+.closed-bud .bud-core-petal {
+  transform-origin: center;
+  transition: transform 1.2s ease, opacity 1s ease;
+}
+
+.closed-bud .sepal-left {
+  transform-origin: 163px 248px;
+  transition: transform 1.2s ease;
+}
+
+.closed-bud .sepal-right {
+  transform-origin: 177px 248px;
+  transition: transform 1.2s ease;
+}
+
+.closed-bud.bud-right .sepal-left {
+  transform-origin: 418px 238px;
+}
+.closed-bud.bud-right .sepal-right {
+  transform-origin: 432px 238px;
+}
+
+/* Estado abierto cuando se toca el ramo */
+.bouquet-stage.bloomed-buds .closed-bud .unfurl-petal,
+.closed-bud.bloomed .unfurl-petal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bouquet-stage.bloomed-buds .closed-bud .bud-core-petal,
+.closed-bud.bloomed .bud-core-petal {
+  transform: scale(1.15) rotate(3deg);
+}
+
+.bouquet-stage.bloomed-buds .closed-bud .sepal-left,
+.closed-bud.bloomed .sepal-left {
+  transform: rotate(-35deg) scale(0.9);
+}
+
+.bouquet-stage.bloomed-buds .closed-bud .sepal-right,
+.closed-bud.bloomed .sepal-right {
+  transform: rotate(35deg) scale(0.9);
+}
+
+/* Destello luminoso especial en los capullos que abren */
+.bouquet-stage.bloomed-buds .closed-bud,
+.closed-bud.bloomed {
+  filter: drop-shadow(0 0 14px rgba(255, 240, 244, 0.85));
+  transition: filter 1s ease;
+}
+
+/* =============================================================================
+   PARTÍCULAS MÁGICAS AL TOCAR (FLOWER BURST PARTICLES)
+   ============================================================================= */
+.touch-burst-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  overflow: visible;
+}
+
+.touch-spark {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, #FFF8FA 0%, #F1C1CF 60%, rgba(232, 166, 183, 0) 100%);
+  box-shadow: 0 0 10px rgba(248, 220, 228, 0.9), 0 0 20px rgba(232, 166, 183, 0.6);
+  animation: burstParticleFly var(--dur, 1.4s) cubic-bezier(0.12, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes burstParticleFly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(calc(var(--tx) * 0.3), calc(var(--ty) * 0.3)) scale(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.2);
+  }
+}
+
+/* Contenedor del SVG */
+.bouquet-svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================================================================
+   SECUENCIA DE ANIMACIÓN: FASES BOTÁNICAS CON @KEYFRAMES
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   FASE 1: TALLOS (Dibujado progresivo de abajo hacia arriba)
+   ----------------------------------------------------------------------------- */
+.stem-path, .stem-sub, .stem-bottom {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+}
+
+@keyframes stemDraw {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animating .stem-path,
+.animating .stem-sub,
+.animating .stem-bottom,
+.revealed .stem-path,
+.revealed .stem-sub,
+.revealed .stem-bottom {
+  animation: stemDraw 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.animating .stem-bottom { animation-delay: 0.1s; }
+.animating .stem-path[data-stem="1"] { animation-delay: 0.25s; }
+.animating .stem-path[data-stem="2"] { animation-delay: 0.3s; }
+.animating .stem-path[data-stem="3"] { animation-delay: 0.35s; }
+.animating .stem-path[data-stem="4"] { animation-delay: 0.45s; }
+.animating .stem-path[data-stem="5"] { animation-delay: 0.5s; }
+.animating .stem-path[data-stem="6"] { animation-delay: 0.55s; }
+.animating .stem-path[data-stem="7"] { animation-delay: 0.6s; }
+.animating .stem-sub { animation-delay: 0.75s; }
+
+/* -----------------------------------------------------------------------------
+   FASE 2: HOJAS BOTÁNICAS (Despliegue suave)
+   ----------------------------------------------------------------------------- */
+.leaf-node {
+  transform-origin: var(--origin, center);
+  opacity: 0;
+  transform: scale(0) rotate(-20deg);
+}
+
+@keyframes leafUnfurl {
+  0% {
+    transform: scale(0) rotate(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.animating .leaf-node,
+.revealed .leaf-node {
+  animation: leafUnfurl 1.5s var(--ease-bloom) forwards;
+  animation-delay: var(--delay, 0.8s);
+}
+
+/* -----------------------------------------------------------------------------
+   FASE 3: FLORES (Apertura y florecimiento ordenado)
+   ----------------------------------------------------------------------------- */
+.flower-entity {
+  transform-origin: var(--cx, center) var(--cy, center);
+  opacity: 0;
+  transform: scale(0.02) rotate(-15deg);
+}
+
+@keyframes flowerBloom {
+  0% {
+    transform: scale(0.02) rotate(-15deg);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.04) rotate(1.5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.animating .flower-entity,
+.revealed .flower-entity {
+  animation: flowerBloom 1.8s cubic-bezier(0.18, 1.2, 0.4, 1) forwards;
+  animation-delay: var(--delay, 1.4s);
+}
+
+/* Pétalos interiores */
+.flower-entity .petal {
+  transform-origin: center;
+}
+
+/* Puntos de velo de novia / gypsophila */
+.filler-dot {
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes fillerPop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animating .filler-dot,
+.revealed .filler-dot {
+  animation: fillerPop 1s var(--ease-bloom) forwards;
+  animation-delay: var(--delay, 1.3s);
+}
+
+/* -----------------------------------------------------------------------------
+   FASE 4: LAZO DE SATÉN Y DESTELLOS
+   ----------------------------------------------------------------------------- */
+.ribbon-group {
+  transform-origin: 300px 536px;
+  opacity: 0;
+  transform: scale(0);
+}
+
+@keyframes ribbonAppear {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animating .ribbon-group,
+.revealed .ribbon-group {
+  animation: ribbonAppear 1.4s var(--ease-bloom) forwards;
+  animation-delay: var(--delay, 2.5s);
+}
+
+.sparkles-group {
+  opacity: 0;
+}
+
+@keyframes sparklesFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animating .sparkles-group,
+.revealed .sparkles-group {
+  animation: sparklesFade 1.5s ease forwards;
+  animation-delay: var(--delay, 2.8s);
+}
+
+.sparkle-item {
+  transform-origin: var(--sx) var(--sy);
+  animation: sparkleTwinkle 3.5s ease-in-out infinite;
+  animation-delay: var(--sdelay, 0s);
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    transform: scale(0.3) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.25) rotate(45deg);
+    opacity: 0.95;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   ESTADO VISIBLE POST-BLOOM
+   Garantiza que los elementos permanezcan visibles cuando las animaciones de
+   balanceo (Fase 5) reemplazan las animaciones de florecer con fill:forwards.
+   ----------------------------------------------------------------------------- */
+.revealed .flower-entity {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.revealed .leaf-node {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.revealed .filler-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.revealed .ribbon-group {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.revealed .sparkles-group {
+  opacity: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   FASE 5: MOVIMIENTO NATURAL Y BRISA ORGÁNICA (IDLE SWAY)
+   Se activa de forma continua e infinita una vez concluida la animación inicial
+   ----------------------------------------------------------------------------- */
+.revealed .rose-hero {
+  animation: organicSway1 6.5s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 0s);
+}
+
+.revealed .rose-secondary {
+  animation: organicSway2 7.2s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 0.5s);
+}
+
+.revealed .rose-top {
+  animation: organicSway3 6.8s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 1s);
+}
+
+.revealed .blossom-left {
+  animation: organicSway1 7.8s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 1.5s);
+}
+
+.revealed .blossom-right {
+  animation: organicSway2 8.1s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay, 2s);
+}
+
+.revealed .bud-left, .revealed .bud-right {
+  animation: organicSway3 6.2s ease-in-out infinite alternate;
+}
+
+.revealed .leaf-node {
+  animation: leafBreeze 5.8s ease-in-out infinite alternate;
+}
+
+.revealed .ribbon-tail {
+  animation: ribbonFlutter 6s ease-in-out infinite alternate;
+}
+
+@keyframes organicSway1 {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.008) rotate(1.2deg) translateY(-2px); }
+  100% { transform: scale(0.995) rotate(-1deg) translateY(1.5px); }
+}
+
+@keyframes organicSway2 {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.006) rotate(-1.4deg) translateY(-1.5px); }
+  100% { transform: scale(0.998) rotate(1.1deg) translateY(2px); }
+}
+
+@keyframes organicSway3 {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.01) rotate(1deg) translateY(-3px); }
+  100% { transform: scale(0.994) rotate(-0.8deg) translateY(1px); }
+}
+
+@keyframes leafBreeze {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.02) rotate(2deg); }
+}
+
+@keyframes ribbonFlutter {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1.8deg) skewX(1deg); }
+}
+
+/* =============================================================================
+   INDICACIÓN PARA DESCUBRIR EL SECRETO
+   ============================================================================= */
+.bouquet-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 1.4s var(--ease-gentle), transform 1.4s var(--ease-gentle);
+}
+
+.bouquet-hint.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hint-primary {
+  font-family: var(--font-serif-editorial);
+  font-size: clamp(1.1rem, 3.2vw, 1.35rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-rose-pale);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 12px rgba(232, 166, 183, 0.2);
+}
+
+.hint-secondary {
+  font-family: var(--font-sans-clean);
+  font-size: clamp(0.75rem, 2.2vw, 0.85rem);
+  font-weight: 300;
+  color: rgba(248, 220, 228, 0.6);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Adaptación responsive en pantallas reducidas */
+@media (max-height: 680px) {
+  .bouquet-stage {
+    height: 58vh;
+  }
+  .bouquet-hint {
+    margin-top: 0.2rem;
+  }
+}

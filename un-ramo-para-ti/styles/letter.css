@@ -1,0 +1,290 @@
+/* =============================================================================
+   ESCENA 3: LA CARTA DE CUMPLEAÑOS
+   ============================================================================= */
+.scene-letter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: rgba(8, 7, 8, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s var(--ease-gentle), visibility 0.8s;
+  overflow-y: auto;
+}
+
+.scene-letter-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Tarjeta de papel marfil */
+.letter-paper {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 440px;
+  min-width: 0;
+  margin: auto;
+  max-height: 88vh;
+  max-height: 88dvh;
+  background-color: var(--color-paper-ivory);
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(248, 220, 228, 0.4) 0%, transparent 60%),
+    linear-gradient(180deg, #FAF6F0 0%, #F5ECE0 100%);
+  color: var(--color-text-letter);
+  border-radius: 6px;
+  box-shadow: 
+    0 25px 60px -12px rgba(0, 0, 0, 0.75),
+    0 0 40px rgba(232, 166, 183, 0.15),
+    inset 0 0 30px rgba(217, 180, 160, 0.12);
+  border: 1px solid rgba(232, 166, 183, 0.3);
+  padding: clamp(2rem, 6vw, 3.2rem) clamp(1.6rem, 5vw, 2.5rem);
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.7s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(185, 124, 144, 0.3) transparent;
+}
+
+.letter-paper::-webkit-scrollbar {
+  width: 4px;
+}
+.letter-paper::-webkit-scrollbar-thumb {
+  background-color: rgba(185, 124, 144, 0.3);
+  border-radius: 4px;
+}
+
+.scene-letter-overlay.active .letter-paper {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Borde interior sutil y ornamental */
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(185, 124, 144, 0.18);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* Esquina botánica ilustrada */
+.letter-corner-decor {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Botón de cierre discreto en la esquina superior */
+.btn-close-letter-x {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-letter-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.btn-close-letter-x:hover,
+.btn-close-letter-x:focus-visible {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.btn-close-letter-x svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* Contenido de la carta */
+.letter-body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+/* Encabezado */
+.letter-header {
+  font-family: var(--font-serif-editorial);
+  font-size: clamp(1.45rem, 4.2vw, 1.85rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-rose-deep);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(185, 124, 144, 0.2);
+  padding-bottom: 0.8rem;
+  text-align: left;
+  word-break: break-word;
+}
+
+/* Párrafos del mensaje */
+.letter-text-paragraph {
+  font-family: var(--font-serif-editorial);
+  font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+  line-height: 1.75;
+  color: var(--color-text-letter);
+  text-align: left;
+  letter-spacing: 0.015em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: letterTextFadeIn 0.8s var(--ease-gentle) forwards;
+}
+
+.letter-text-paragraph:nth-child(2) { animation-delay: 0.3s; }
+.letter-text-paragraph:nth-child(3) { animation-delay: 0.45s; }
+.letter-text-paragraph:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes letterTextFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Firma y despedida */
+.letter-footer {
+  margin-top: 1rem;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.2rem;
+  opacity: 0;
+  animation: letterTextFadeIn 0.8s var(--ease-gentle) 0.75s forwards;
+}
+
+.letter-closing {
+  font-family: var(--font-serif-editorial);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--color-text-letter-muted);
+}
+
+.letter-signature {
+  font-family: var(--font-script-romantic);
+  font-size: clamp(1.25rem, 3.8vw, 1.6rem);
+  color: var(--color-rose-deep);
+  letter-spacing: 0.02em;
+  margin-top: 0.2rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Botón inferior para cerrar y contemplar el ramo */
+.letter-actions {
+  margin-top: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  animation: letterTextFadeIn 0.8s var(--ease-gentle) 0.9s forwards;
+}
+
+.btn-close-letter {
+  box-sizing: border-box;
+  max-width: 100%;
+  background: transparent;
+  border: 1px solid rgba(185, 124, 144, 0.45);
+  color: var(--color-rose-deep);
+  font-family: var(--font-serif-editorial);
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.3rem;
+  border-radius: 30px;
+  cursor: pointer;
+  text-align: center;
+  white-space: normal;
+  transition: all 0.4s var(--ease-gentle);
+}
+
+.btn-close-letter:hover,
+.btn-close-letter:focus-visible {
+  background: rgba(185, 124, 144, 0.08);
+  border-color: var(--color-rose-deep);
+  color: #8C475D;
+  transform: translateY(-1.5px);
+}
+
+.btn-close-letter:active {
+  transform: translateY(0);
+}
+
+/* =============================================================================
+   RESPONSIVE EN TELÉFONOS MÓVILES
+   ============================================================================= */
+@media (max-width: 520px) {
+  .scene-letter-overlay {
+    padding: 0.75rem;
+  }
+  .letter-paper {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 2.2rem 1.15rem 1.5rem 1.15rem;
+    max-height: 92dvh;
+    border-radius: 8px;
+  }
+  .letter-paper::before {
+    inset: 6px;
+  }
+  .letter-corner-decor {
+    top: 8px;
+    right: 8px;
+    transform: scale(0.8);
+  }
+  .btn-close-letter-x {
+    top: 8px;
+    left: 8px;
+  }
+  .letter-header {
+    font-size: 1.32rem;
+    padding-bottom: 0.5rem;
+  }
+  .letter-text-paragraph {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+  .letter-signature {
+    font-size: 1.25rem;
+  }
+  .btn-close-letter {
+    font-size: 0.76rem;
+    padding: 0.5rem 1rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+

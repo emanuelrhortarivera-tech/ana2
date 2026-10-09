@@ -1,0 +1,8 @@
+Coloca aquí tu canción favorita de cumpleaños en formato MP3 con el nombre:
+cumpleanos.mp3
+
+Ruta completa recomendada:
+public/audio/cumpleanos.mp3
+
+(La página web reproducirá automáticamente este archivo al pulsar «Abrir tu regalo»).
+Si este archivo no existe, la página seguirá funcionando con normalidad y en silencio.

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080708">
+  <meta name="description" content="Un ramo de flores rosadas ilustrado con delicadeza y una carta de cumpleaños especial.">
+  <title>Para Ana. 🌸</title>
+
+  <!-- Favicon: Flor de cerezo / rosa botánica -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='petal' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23FFF0F4'/%3E%3Cstop offset='60%25' stop-color='%23F1C1CF'/%3E%3Cstop offset='100%25' stop-color='%23E8A6B7'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg transform='translate(50,50)'%3E%3Cpath d='M0,0 C-18,-25 -12,-44 0,-44 C12,-44 18,-25 0,0' fill='url(%23petal)' transform='rotate(0)'/%3E%3Cpath d='M0,0 C-18,-25 -12,-44 0,-44 C12,-44 18,-25 0,0' fill='url(%23petal)' transform='rotate(72)'/%3E%3Cpath d='M0,0 C-18,-25 -12,-44 0,-44 C12,-44 18,-25 0,0' fill='url(%23petal)' transform='rotate(144)'/%3E%3Cpath d='M0,0 C-18,-25 -12,-44 0,-44 C12,-44 18,-25 0,0' fill='url(%23petal)' transform='rotate(216)'/%3E%3Cpath d='M0,0 C-18,-25 -12,-44 0,-44 C12,-44 18,-25 0,0' fill='url(%23petal)' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='10' fill='%23B97C90'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFF5F7'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Alex Brush -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Estilos del proyecto -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/bouquet.css">
+  <link rel="stylesheet" href="styles/letter.css">
+</head>
+<body>
+
+  <!-- Contenedor general -->
+  <main id="app" role="main">
+
+    <!-- Capa de partículas sutiles de fondo -->
+    <div id="ambient-motes" class="ambient-motes-container" aria-hidden="true"></div>
+
+    <!-- Control flotante de música (esquina superior derecha) -->
+    <aside id="music-control-container" class="music-control-container" aria-label="Control de reproducción musical">
+      <button id="btn-music-toggle" class="btn-music-toggle muted" aria-label="Alternar música de fondo" title="Música">
+        <div class="music-waves" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </aside>
+
+    <!-- ================================================================= -->
+    <!-- PANTALLA 1: LA INVITACIÓN                                         -->
+    <!-- ================================================================= -->
+    <section id="scene-welcome" class="scene-welcome" aria-labelledby="welcome-title">
+      <div class="welcome-content">
+        <!-- Ilustración de una pequeña flor solitaria -->
+        <div id="welcome-flower" class="welcome-flower-wrapper" aria-hidden="true">
+          <svg class="single-rose-svg" viewBox="0 0 120 160" width="80" height="106" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="inv-rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF0F4" />
+                <stop offset="50%" stop-color="#F1C1CF" />
+                <stop offset="100%" stop-color="#B97C90" />
+              </linearGradient>
+              <linearGradient id="inv-stem-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#3A4D3E" />
+                <stop offset="100%" stop-color="#64806A" />
+              </linearGradient>
+            </defs>
+            <path d="M 60,70 Q 58,110 60,150" stroke="url(#inv-stem-grad)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <path d="M 59,105 C 50,100 42,105 38,102 C 45,95 55,98 59,105 Z" fill="#536B59" opacity="0.9" />
+            <path d="M 60,70 C 40,65 38,40 55,35 C 70,30 80,55 60,70 Z" fill="url(#inv-rose-grad)" opacity="0.95" />
+            <path d="M 60,70 C 75,65 80,45 68,36 C 55,30 48,50 60,70 Z" fill="url(#inv-rose-grad)" opacity="0.9" />
+            <path d="M 60,70 C 50,55 52,42 60,42 C 68,42 70,55 60,70 Z" fill="#F8DCE4" />
+            <ellipse cx="60" cy="46" rx="5" ry="4" fill="#B97C90" />
+            <path d="M 58,45 C 58,43 62,43 62,45" stroke="#FFF0F4" stroke-width="1" stroke-linecap="round" fill="none" />
+          </svg>
+        </div>
+
+        <h1 id="welcome-title" class="welcome-title">Tengo algo para ti</h1>
+        
+        <p id="welcome-subtitle" class="welcome-subtitle">Preparé un pequeño regalo con mucho cariño.</p>
+
+        <button id="btn-open-gift" class="btn-open-gift" type="button" aria-haspopup="true">
+          Abrir tu regalo
+        </button>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- ESCENA 2: EL RAMO BOTÁNICO                                        -->
+    <!-- ================================================================= -->
+    <section id="scene-bouquet" class="scene-bouquet" aria-label="Ramo botánico de flores">
+      
+      <!-- Zona interactiva del ramo completo -->
+      <div 
+        id="bouquet-stage" 
+        class="bouquet-stage" 
+        tabindex="0" 
+        role="button" 
+        aria-label="Ramo botánico de flores rosadas. Toca o presiona para descubrir la carta escondida."
+      >
+        <div id="bouquet-container" class="bouquet-svg-container" aria-hidden="true">
+          <svg id="bouquet-svg" viewBox="0 0 600 740" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+
+              <filter id="petal-shadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#080708" flood-opacity="0.35" />
+              </filter>
+
+              <linearGradient id="stem-grad-1" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#3A4D3E" />
+                <stop offset="70%" stop-color="#536B59" />
+                <stop offset="100%" stop-color="#67836D" />
+              </linearGradient>
+
+              <linearGradient id="stem-grad-2" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#2D3C30" />
+                <stop offset="100%" stop-color="#4C6352" />
+              </linearGradient>
+
+              <linearGradient id="leaf-grad-main" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#64806A" />
+                <stop offset="50%" stop-color="#536B59" />
+                <stop offset="100%" stop-color="#38493C" />
+              </linearGradient>
+
+              <linearGradient id="leaf-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#729179" />
+                <stop offset="100%" stop-color="#4B6150" />
+              </linearGradient>
+
+              <radialGradient id="rose-core-1" cx="45%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#EAA1B4" />
+                <stop offset="45%" stop-color="#D7869C" />
+                <stop offset="85%" stop-color="#B97C90" />
+                <stop offset="100%" stop-color="#935B6D" />
+              </radialGradient>
+
+              <linearGradient id="petal-grad-outer" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFF0F4" />
+                <stop offset="40%" stop-color="#F8DCE4" />
+                <stop offset="80%" stop-color="#F1C1CF" />
+                <stop offset="100%" stop-color="#E8A6B7" />
+              </linearGradient>
+
+              <linearGradient id="petal-grad-mid" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FCEEF2" />
+                <stop offset="50%" stop-color="#F1C1CF" />
+                <stop offset="100%" stop-color="#DE93A7" />
+              </linearGradient>
+
+              <linearGradient id="petal-grad-inner" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#F3BDCC" />
+                <stop offset="70%" stop-color="#E8A6B7" />
+                <stop offset="100%" stop-color="#B97C90" />
+              </linearGradient>
+
+              <radialGradient id="rose-core-2" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#F8D4DF" />
+                <stop offset="60%" stop-color="#EAA3B5" />
+                <stop offset="100%" stop-color="#C58095" />
+              </radialGradient>
+
+              <radialGradient id="blossom-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFF5F7" />
+                <stop offset="65%" stop-color="#F8DCE4" />
+                <stop offset="100%" stop-color="#EAA3B5" />
+              </radialGradient>
+
+              <linearGradient id="ribbon-grad-main" x1="0%" y1="0%" x2="100%" y2="50%">
+                <stop offset="0%" stop-color="#F3BDCC" />
+                <stop offset="35%" stop-color="#E8A6B7" />
+                <stop offset="75%" stop-color="#D48B9E" />
+                <stop offset="100%" stop-color="#BA7185" />
+              </linearGradient>
+
+              <linearGradient id="ribbon-shadow-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#BA7185" />
+                <stop offset="100%" stop-color="#8F4E60" />
+              </linearGradient>
+            </defs>
+
+            <!-- Capa 0: Resplandor sutil de fondo -->
+            <g id="ambient-aura" class="ambient-aura">
+              <ellipse cx="300" cy="330" rx="190" ry="170" fill="#E8A6B7" opacity="0.04" filter="url(#soft-glow)" />
+              <circle cx="300" cy="310" r="120" fill="#F8DCE4" opacity="0.03" filter="url(#soft-glow)" />
+            </g>
+
+            <!-- Capa 1: Tallos botánicos -->
+            <g id="stems-group" class="stems-group">
+              <path class="stem-bottom" d="M 292,538 Q 288,580 274,625" stroke="url(#stem-grad-2)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+              <path class="stem-bottom" d="M 297,542 Q 296,590 288,642" stroke="url(#stem-grad-1)" stroke-width="5" stroke-linecap="round" fill="none" />
+              <path class="stem-bottom" d="M 302,542 Q 303,595 304,646" stroke="url(#stem-grad-2)" stroke-width="4.8" stroke-linecap="round" fill="none" />
+              <path class="stem-bottom" d="M 307,540 Q 312,588 322,638" stroke="url(#stem-grad-1)" stroke-width="5.2" stroke-linecap="round" fill="none" />
+              <path class="stem-bottom" d="M 312,536 Q 320,578 335,622" stroke="url(#stem-grad-2)" stroke-width="4" stroke-linecap="round" fill="none" />
+
+              <path class="stem-path" data-stem="1" d="M 295,535 C 275,470 230,410 235,320" stroke="url(#stem-grad-1)" stroke-width="5.5" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="2" d="M 305,535 C 320,465 370,400 375,310" stroke="url(#stem-grad-1)" stroke-width="5.2" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="3" d="M 300,535 C 298,440 295,340 305,215" stroke="url(#stem-grad-1)" stroke-width="5.8" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="4" d="M 292,535 C 255,460 175,370 170,250" stroke="url(#stem-grad-2)" stroke-width="4.2" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="5" d="M 308,535 C 345,460 415,365 425,240" stroke="url(#stem-grad-2)" stroke-width="4.2" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="6" d="M 290,535 C 240,490 160,430 150,380" stroke="url(#stem-grad-2)" stroke-width="3.8" stroke-linecap="round" fill="none" />
+              <path class="stem-path" data-stem="7" d="M 310,535 C 360,490 435,435 448,375" stroke="url(#stem-grad-2)" stroke-width="3.8" stroke-linecap="round" fill="none" />
+
+              <path class="stem-sub" d="M 270,455 Q 230,440 205,420" stroke="url(#stem-grad-2)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path class="stem-sub" d="M 330,450 Q 375,435 400,410" stroke="url(#stem-grad-2)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path class="stem-sub" d="M 215,355 Q 165,330 135,305" stroke="url(#stem-grad-2)" stroke-width="2" stroke-linecap="round" fill="none" />
+              <path class="stem-sub" d="M 385,345 Q 435,320 465,295" stroke="url(#stem-grad-2)" stroke-width="2" stroke-linecap="round" fill="none" />
+              <path class="stem-sub" d="M 298,320 Q 260,250 240,195" stroke="url(#stem-grad-2)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path class="stem-sub" d="M 305,310 Q 345,245 365,190" stroke="url(#stem-grad-2)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- Capa 2: Hojas botánicas -->
+            <g id="leaves-group" class="leaves-group">
+              <g class="leaf-node" style="--origin: 245px 475px; --delay: 0.6s;">
+                <path d="M 245,475 C 205,465 175,495 155,485 C 175,460 215,450 245,475 Z" fill="url(#leaf-grad-main)" />
+                <path d="M 245,475 Q 200,470 155,485" stroke="#729179" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.6" />
+              </g>
+              <g class="leaf-node" style="--origin: 350px 470px; --delay: 0.7s;">
+                <path d="M 350,470 C 390,460 425,485 445,470 C 425,450 385,445 350,470 Z" fill="url(#leaf-grad-main)" />
+                <path d="M 350,470 Q 395,465 445,470" stroke="#729179" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.6" />
+              </g>
+              <g class="leaf-node" style="--origin: 200px 380px; --delay: 0.8s;">
+                <path d="M 200,380 C 150,370 120,395 95,385 C 115,355 160,350 200,380 Z" fill="url(#leaf-grad-light)" />
+                <path d="M 200,380 Q 150,370 95,385" stroke="#87A68E" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7" />
+              </g>
+              <g class="leaf-node" style="--origin: 395px 375px; --delay: 0.9s;">
+                <path d="M 395,375 C 445,365 475,390 505,380 C 485,350 440,345 395,375 Z" fill="url(#leaf-grad-light)" />
+                <path d="M 395,375 Q 445,365 505,380" stroke="#87A68E" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7" />
+              </g>
+              <g class="leaf-node" style="--origin: 250px 300px; --delay: 1.0s;">
+                <path d="M 250,300 C 210,270 185,280 160,265 C 185,245 225,260 250,300 Z" fill="url(#leaf-grad-main)" />
+                <path d="M 250,300 Q 205,275 160,265" stroke="#729179" stroke-width="1" fill="none" opacity="0.5" />
+              </g>
+              <g class="leaf-node" style="--origin: 355px 290px; --delay: 1.1s;">
+                <path d="M 355,290 C 395,260 420,270 445,255 C 420,235 380,250 355,290 Z" fill="url(#leaf-grad-main)" />
+                <path d="M 355,290 Q 400,265 445,255" stroke="#729179" stroke-width="1" fill="none" opacity="0.5" />
+              </g>
+              <g class="leaf-node" style="--origin: 240px 195px; --delay: 1.2s;">
+                <path d="M 240,195 C 220,165 200,160 185,145 C 205,140 230,165 240,195 Z" fill="url(#leaf-grad-light)" opacity="0.9" />
+              </g>
+              <g class="leaf-node" style="--origin: 365px 190px; --delay: 1.25s;">
+                <path d="M 365,190 C 385,160 405,155 420,140 C 400,135 375,160 365,190 Z" fill="url(#leaf-grad-light)" opacity="0.9" />
+              </g>
+              <g class="leaf-node" style="--origin: 305px 170px; --delay: 1.3s;">
+                <path d="M 305,170 C 290,135 300,110 300,95 C 315,115 318,140 305,170 Z" fill="url(#leaf-grad-light)" opacity="0.95" />
+              </g>
+            </g>
+
+            <!-- Capa 3: Flores de relleno (Gypsophila) -->
+            <g id="fillers-group" class="fillers-group">
+              <circle class="filler-dot" cx="130" cy="300" r="4.5" fill="#FFF0F4" opacity="0.9" style="--delay: 1.3s;" />
+              <circle class="filler-dot" cx="145" cy="285" r="3.8" fill="#F8DCE4" opacity="0.8" style="--delay: 1.35s;" />
+              <circle class="filler-dot" cx="120" cy="280" r="3.2" fill="#F1C1CF" opacity="0.75" style="--delay: 1.4s;" />
+              <circle class="filler-dot" cx="155" cy="315" r="4" fill="#FFF5F7" opacity="0.85" style="--delay: 1.45s;" />
+
+              <circle class="filler-dot" cx="470" cy="290" r="4.5" fill="#FFF0F4" opacity="0.9" style="--delay: 1.3s;" />
+              <circle class="filler-dot" cx="455" cy="275" r="3.8" fill="#F8DCE4" opacity="0.8" style="--delay: 1.35s;" />
+              <circle class="filler-dot" cx="485" cy="270" r="3.2" fill="#F1C1CF" opacity="0.75" style="--delay: 1.4s;" />
+              <circle class="filler-dot" cx="445" cy="305" r="4" fill="#FFF5F7" opacity="0.85" style="--delay: 1.45s;" />
+
+              <circle class="filler-dot" cx="245" cy="180" r="4" fill="#FFF5F7" opacity="0.9" style="--delay: 1.5s;" />
+              <circle class="filler-dot" cx="260" cy="165" r="3.5" fill="#F8DCE4" opacity="0.85" style="--delay: 1.55s;" />
+              <circle class="filler-dot" cx="355" cy="175" r="4" fill="#FFF5F7" opacity="0.9" style="--delay: 1.5s;" />
+              <circle class="filler-dot" cx="340" cy="160" r="3.5" fill="#F8DCE4" opacity="0.85" style="--delay: 1.55s;" />
+            </g>
+
+            <!-- Capa 4: Flores protagonistas -->
+            <g id="flowers-group" class="flowers-group">
+              <!-- Rosa inglesa protagonista (Centro-Izquierda) -->
+              <g class="flower-entity rose-hero" data-flower="hero" style="--cx: 235px; --cy: 320px; --delay: 1.4s; --sway-delay: 0s;">
+                <path class="petal p-outer" d="M 235,320 C 160,335 150,260 195,240 C 230,225 250,270 235,320 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 235,320 C 265,230 330,245 315,295 C 300,340 250,335 235,320 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 235,320 C 315,325 315,400 260,405 C 220,410 220,350 235,320 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 235,320 C 210,415 140,380 155,335 C 165,300 210,305 235,320 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+
+                <path class="petal p-mid" d="M 235,320 C 185,295 190,250 225,255 C 255,260 250,300 235,320 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 235,320 C 275,270 305,290 290,325 C 275,355 245,340 235,320 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 235,320 C 255,365 210,380 195,350 C 185,330 215,310 235,320 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 235,320 C 175,335 180,300 205,285 C 230,270 240,300 235,320 Z" fill="url(#petal-grad-mid)" />
+
+                <path class="petal p-inner" d="M 235,320 C 205,300 210,275 235,280 C 255,285 250,310 235,320 Z" fill="url(#petal-grad-inner)" />
+                <path class="petal p-inner" d="M 235,320 C 255,295 270,315 255,335 C 240,350 225,335 235,320 Z" fill="url(#petal-grad-inner)" />
+                <path class="petal p-inner" d="M 235,320 C 220,340 205,330 210,310 C 215,295 230,305 235,320 Z" fill="url(#petal-grad-inner)" />
+
+                <ellipse cx="235" cy="312" rx="15" ry="12" fill="url(#rose-core-1)" />
+                <path d="M 226,312 C 226,306 244,306 244,312 C 244,317 230,317 230,312" stroke="#FFF0F4" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.85" />
+                <path d="M 229,313 C 229,309 240,309 240,313" stroke="#FCEEF2" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.9" />
+              </g>
+
+              <!-- Rosa de jardín secundaria (Centro-Derecha) -->
+              <g class="flower-entity rose-secondary" data-flower="second" style="--cx: 375px; --cy: 310px; --delay: 1.6s; --sway-delay: 0.5s;">
+                <path class="petal p-outer" d="M 375,310 C 310,300 320,230 365,225 C 400,220 415,270 375,310 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 375,310 C 435,250 470,295 440,345 C 410,380 375,340 375,310 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 375,310 C 410,385 345,405 320,365 C 305,335 345,320 375,310 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 375,310 C 330,370 290,320 315,280 C 335,250 360,280 375,310 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+
+                <path class="petal p-mid" d="M 375,310 C 335,275 350,245 380,250 C 405,255 395,290 375,310 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 375,310 C 420,280 430,315 405,340 C 385,360 365,335 375,310 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 375,310 C 380,355 345,360 335,335 C 325,315 350,305 375,310 Z" fill="url(#petal-grad-mid)" />
+
+                <path class="petal p-inner" d="M 375,310 C 355,290 365,270 385,275 C 400,280 395,305 375,310 Z" fill="url(#petal-grad-inner)" />
+                <path class="petal p-inner" d="M 375,310 C 395,295 405,315 390,330 C 375,340 365,325 375,310 Z" fill="url(#petal-grad-inner)" />
+
+                <ellipse cx="375" cy="305" rx="14" ry="11" fill="url(#rose-core-2)" />
+                <path d="M 368,305 C 368,300 382,300 382,305 C 382,309 372,309 372,305" stroke="#FFF0F4" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.85" />
+              </g>
+
+              <!-- Rosa superior (Centro-Arriba) -->
+              <g class="flower-entity rose-top" data-flower="top" style="--cx: 305px; --cy: 215px; --delay: 1.8s; --sway-delay: 1.1s;">
+                <path class="petal p-outer" d="M 305,215 C 255,200 260,145 295,145 C 330,145 340,190 305,215 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 305,215 C 350,170 385,210 360,250 C 335,275 295,250 305,215 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                <path class="petal p-outer" d="M 305,215 C 320,270 265,280 250,245 C 240,220 275,200 305,215 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+
+                <path class="petal p-mid" d="M 305,215 C 275,185 290,160 315,165 C 335,170 325,200 305,215 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 305,215 C 340,200 345,230 325,245 C 310,255 295,235 305,215 Z" fill="url(#petal-grad-mid)" />
+                <path class="petal p-mid" d="M 305,215 C 285,240 265,225 275,205 C 285,190 300,205 305,215 Z" fill="url(#petal-grad-mid)" />
+
+                <ellipse cx="305" cy="210" rx="12" ry="10" fill="url(#rose-core-1)" />
+                <path d="M 299,210 C 299,206 311,206 311,210 C 311,213 303,213 303,210" stroke="#FFF0F4" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.9" />
+              </g>
+
+              <!-- Flor silvestre izquierda -->
+              <g class="flower-entity blossom-left" data-flower="blossom-l" style="--cx: 150px; --cy: 380px; --delay: 2.0s; --sway-delay: 1.6s;">
+                <path class="petal p-outer" d="M 150,380 C 120,360 115,325 140,325 C 160,325 160,360 150,380 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 150,380 C 165,355 195,360 195,385 C 195,405 165,400 150,380 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 150,380 C 165,405 155,435 135,430 C 120,425 135,395 150,380 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 150,380 C 125,405 95,395 100,375 C 105,360 135,370 150,380 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 150,380 C 105,370 100,340 120,335 C 135,330 145,360 150,380 Z" fill="url(#blossom-grad)" />
+
+                <circle cx="150" cy="380" r="6" fill="#B97C90" />
+                <circle cx="148" cy="378" r="1.5" fill="#FFF5F7" />
+                <circle cx="152" cy="379" r="1.4" fill="#FFF5F7" />
+                <circle cx="150" cy="383" r="1.4" fill="#FFF5F7" />
+              </g>
+
+              <!-- Flor silvestre derecha -->
+              <g class="flower-entity blossom-right" data-flower="blossom-r" style="--cx: 448px; --cy: 375px; --delay: 2.1s; --sway-delay: 2.1s;">
+                <path class="petal p-outer" d="M 448,375 C 420,355 425,320 450,320 C 470,320 465,355 448,375 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 448,375 C 475,355 500,370 495,395 C 490,415 465,400 448,375 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 448,375 C 465,405 445,435 425,425 C 415,415 435,390 448,375 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 448,375 C 420,400 395,385 405,365 C 415,355 435,370 448,375 Z" fill="url(#blossom-grad)" />
+                <path class="petal p-outer" d="M 448,375 C 410,360 415,330 435,330 C 445,330 445,360 448,375 Z" fill="url(#blossom-grad)" />
+
+                <circle cx="448" cy="375" r="5.5" fill="#B97C90" />
+                <circle cx="446" cy="373" r="1.4" fill="#FFF5F7" />
+                <circle cx="450" cy="374" r="1.3" fill="#FFF5F7" />
+                <circle cx="448" cy="378" r="1.3" fill="#FFF5F7" />
+              </g>
+
+              <!-- Capullo izquierdo (se abre al tocar el ramo) -->
+              <g class="flower-entity bud-left closed-bud" data-flower="bud-l" style="--cx: 170px; --cy: 250px; --delay: 2.2s; --sway-delay: 0.8s;">
+                <!-- Pétalos que se despliegan al florecer -->
+                <g class="bud-unfurl-petals">
+                  <path class="petal p-outer unfurl-petal" d="M 170,250 C 130,260 115,220 145,200 C 165,185 180,225 170,250 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                  <path class="petal p-outer unfurl-petal" d="M 170,250 C 185,180 225,205 205,245 C 195,265 175,255 170,250 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                  <path class="petal p-mid unfurl-petal" d="M 170,250 C 145,215 150,185 175,190 C 190,195 185,235 170,250 Z" fill="url(#petal-grad-mid)" />
+                </g>
+
+                <!-- Base inicial del capullo -->
+                <path class="petal p-outer bud-core-petal" d="M 170,250 C 145,230 150,195 170,190 C 190,195 195,230 170,250 Z" fill="url(#petal-grad-mid)" filter="url(#petal-shadow)" />
+                <path class="petal p-inner bud-core-petal" d="M 170,250 C 155,225 160,205 170,200 C 180,205 185,225 170,250 Z" fill="url(#petal-grad-inner)" />
+                <ellipse cx="170" cy="205" rx="6" ry="7" fill="url(#rose-core-1)" />
+                <path class="sepal sepal-left" d="M 163,248 C 160,240 155,235 152,225 C 160,235 165,245 167,252 Z" fill="#536B59" />
+                <path class="sepal sepal-right" d="M 177,248 C 180,240 185,235 188,225 C 180,235 175,245 173,252 Z" fill="#536B59" />
+              </g>
+
+              <!-- Capullo derecho (se abre al tocar el ramo) -->
+              <g class="flower-entity bud-right closed-bud" data-flower="bud-r" style="--cx: 425px; --cy: 240px; --delay: 2.3s; --sway-delay: 1.3s;">
+                <!-- Pétalos que se despliegan al florecer -->
+                <g class="bud-unfurl-petals">
+                  <path class="petal p-outer unfurl-petal" d="M 425,240 C 385,250 370,210 400,190 C 420,175 435,215 425,240 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                  <path class="petal p-outer unfurl-petal" d="M 425,240 C 440,170 480,195 460,235 C 450,255 430,245 425,240 Z" fill="url(#petal-grad-outer)" filter="url(#petal-shadow)" />
+                  <path class="petal p-mid unfurl-petal" d="M 425,240 C 400,205 405,175 430,180 C 445,185 440,225 425,240 Z" fill="url(#petal-grad-mid)" />
+                </g>
+
+                <!-- Base inicial del capullo -->
+                <path class="petal p-outer bud-core-petal" d="M 425,240 C 400,220 405,185 425,180 C 445,185 450,220 425,240 Z" fill="url(#petal-grad-mid)" filter="url(#petal-shadow)" />
+                <path class="petal p-inner bud-core-petal" d="M 425,240 C 410,215 415,195 425,190 C 435,195 440,215 425,240 Z" fill="url(#petal-grad-inner)" />
+                <ellipse cx="425" cy="195" rx="6" ry="7" fill="url(#rose-core-2)" />
+                <path class="sepal sepal-left" d="M 418,238 C 415,230 410,225 407,215 C 415,225 420,235 422,242 Z" fill="#536B59" />
+                <path class="sepal sepal-right" d="M 432,238 C 435,230 440,225 443,215 C 435,225 430,235 428,242 Z" fill="#536B59" />
+              </g>
+            </g>
+
+            <!-- Capa 5: Lazo de satén rosa empolvado -->
+            <g id="ribbon-group" class="ribbon-group" style="--delay: 2.5s;">
+              <path class="ribbon-tail tail-left" d="M 295,540 C 275,560 255,595 248,630 C 255,625 265,605 278,575 C 285,558 293,546 295,540 Z" fill="url(#ribbon-shadow-grad)" opacity="0.9" />
+              <path class="ribbon-tail tail-right" d="M 305,540 C 325,560 345,600 355,635 C 345,628 335,605 322,575 C 315,558 307,546 305,540 Z" fill="url(#ribbon-shadow-grad)" opacity="0.9" />
+              <path class="ribbon-loop loop-left" d="M 296,535 C 270,510 225,512 215,530 C 208,542 225,552 255,545 C 280,540 293,537 296,535 Z" fill="url(#ribbon-grad-main)" filter="url(#petal-shadow)" />
+              <path d="M 230,528 C 240,525 265,532 285,536" stroke="#BA7185" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.7" />
+              <path class="ribbon-loop loop-right" d="M 304,535 C 330,510 375,512 385,530 C 392,542 375,552 345,545 C 320,540 307,537 304,535 Z" fill="url(#ribbon-grad-main)" filter="url(#petal-shadow)" />
+              <path d="M 370,528 C 360,525 335,532 315,536" stroke="#BA7185" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.7" />
+              <ellipse cx="300" cy="536" rx="9" ry="8" fill="url(#ribbon-grad-main)" filter="url(#petal-shadow)" />
+              <path d="M 296,533 C 298,537 298,539 296,541" stroke="#FCEEF2" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.8" />
+              <path d="M 304,533 C 302,537 302,539 304,541" stroke="#8F4E60" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6" />
+            </g>
+
+            <!-- Capa 6: Destellos sutiles -->
+            <g id="sparkles-group" class="sparkles-group" style="--delay: 2.8s;">
+              <g class="sparkle-item" style="--sx: 190px; --sy: 210px; --sdelay: 0s;">
+                <path d="M 190,202 Q 190,210 182,210 Q 190,210 190,218 Q 190,210 198,210 Q 190,210 190,202 Z" fill="#FFF5F7" filter="url(#soft-glow)" />
+              </g>
+              <g class="sparkle-item" style="--sx: 320px; --sy: 150px; --sdelay: 1.2s;">
+                <path d="M 320,144 Q 320,150 314,150 Q 320,150 320,156 Q 320,150 326,150 Q 320,150 320,144 Z" fill="#FFF5F7" filter="url(#soft-glow)" />
+              </g>
+              <g class="sparkle-item" style="--sx: 410px; --sy: 190px; --sdelay: 2.1s;">
+                <path d="M 410,183 Q 410,190 403,190 Q 410,190 410,197 Q 410,190 417,190 Q 410,190 410,183 Z" fill="#FFF5F7" filter="url(#soft-glow)" />
+              </g>
+              <g class="sparkle-item" style="--sx: 125px; --sy: 340px; --sdelay: 0.7s;">
+                <path d="M 125,335 Q 125,340 120,340 Q 125,340 125,345 Q 125,340 130,340 Q 125,340 125,335 Z" fill="#F8DCE4" />
+              </g>
+              <g class="sparkle-item" style="--sx: 470px; --sy: 350px; --sdelay: 1.8s;">
+                <path d="M 470,345 Q 470,350 465,350 Q 470,350 470,355 Q 470,350 475,350 Q 470,350 470,345 Z" fill="#F8DCE4" />
+              </g>
+              <g class="sparkle-item" style="--sx: 300px; --sy: 505px; --sdelay: 2.7s;">
+                <path d="M 300,500 Q 300,505 295,505 Q 300,505 300,510 Q 300,505 305,505 Q 300,505 300,500 Z" fill="#FFF5F7" filter="url(#soft-glow)" />
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Indicación para descubrir el secreto (aparece al culminar el florecimiento) -->
+      <div id="bouquet-hint" class="bouquet-hint" aria-live="polite">
+        <p id="hint-primary" class="hint-primary">Hay algo escondido entre estas flores…</p>
+        <p id="hint-secondary" class="hint-secondary">Toca el ramo para verlo</p>
+      </div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- ESCENA 3: LA CARTA DE CUMPLEAÑOS ESCONDIDA                        -->
+    <!-- ================================================================= -->
+    <section 
+      id="scene-letter-overlay" 
+      class="scene-letter-overlay" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="letter-header" 
+      aria-hidden="true"
+    >
+      <article id="letter-paper" class="letter-paper">
+        
+        <!-- Esquina botánica ilustrada -->
+        <div id="letter-corner-decor" class="letter-corner-decor" aria-hidden="true">
+          <svg class="letter-corner-svg" viewBox="0 0 100 100" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="corner-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F8DCE4" />
+                <stop offset="100%" stop-color="#D7869C" />
+              </linearGradient>
+            </defs>
+            <path d="M 15,85 Q 25,45 65,30" stroke="#7A9380" stroke-width="1.2" stroke-linecap="round" fill="none" />
+            <path d="M 40,55 Q 60,65 80,60" stroke="#7A9380" stroke-width="1" stroke-linecap="round" fill="none" />
+            <path d="M 35,50 C 30,42 22,43 18,38 C 26,38 32,45 35,50 Z" fill="#6B8772" opacity="0.8" />
+            <path d="M 52,38 C 55,28 62,25 66,20 C 65,28 60,34 52,38 Z" fill="#6B8772" opacity="0.8" />
+            <circle cx="68" cy="28" r="7" fill="url(#corner-rose)" />
+            <circle cx="68" cy="28" r="3" fill="#B97C90" />
+            <circle cx="68" cy="28" r="1" fill="#FFF5F7" />
+          </svg>
+        </div>
+
+        <!-- Botón discreto de cierre en esquina -->
+        <button id="btn-close-letter-x" class="btn-close-letter-x" aria-label="Cerrar carta y volver al ramo" title="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- Cuerpo y textos de la carta -->
+        <div class="letter-body">
+          <h2 id="letter-header" class="letter-header">Para alguien muy especial</h2>
+
+          <div id="letter-body-paragraphs" class="letter-paragraphs-wrapper">
+            <p class="letter-text-paragraph">Feliz cumpleaños, Ana. Espero que hoy puedas disfrutar tu día con tu familia y amigos, que la pases increíble y que puedas seguir cumpliendo muchos años más llenos de salud y bendiciones.</p>
+            <p class="letter-text-paragraph">Recuerda lo especial que eres, sigue siendo la misma de siempre, feliz y alegre, ignora mis propios comentarios sobre lo que esta mal o bien de ti o sobre lo que debes o no hacer, es algo que nunca debería haber dicho y espero me perdones, me gusta tu amistad tal y como es.</p>
+            <p class="letter-text-paragraph">También espero en esta carta, aunque me cueste, haber expresado mis sentimientos, si a veces solo me rio cuando me dices algo serio es porque no logro encontrar las palabras para expresarme, igual siempre estaré ahí por si quieres contarme cualquier cosa.</p>
+            <p class="letter-text-paragraph">Lastimosamente hoy no pude hacerte una carta real, la distancia nos va separando, pero con lo que he aprendido logre hacerte esto (pero también puede imprimir esta carta y pegarla en el armario 🤗). Espero te guste. </p>
+          </div>
+
+          <footer class="letter-footer">
+            <p id="letter-closing" class="letter-closing">Con mucho cariño,</p>
+            <p id="letter-signature" class="letter-signature">de alguien que quería hacerte sonreír, Emanuel.</p>
+          </footer>
+
+          <div class="letter-actions">
+            <button id="btn-close-letter" class="btn-close-letter" type="button">
+              Guardar carta y ver el ramo
+            </button>
+          </div>
+        </div>
+
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="scripts/config.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
